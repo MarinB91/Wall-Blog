@@ -1,0 +1,28 @@
+{% extends "index.html" %}
+
+{% block content %}
+<div><h2>Publish a wall post</h2>
+<form method="POST">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <input type="submit">
+</form>
+</div>
+
+<div><h2>Messages by other users</h2>
+{% for message in home_page_messages %}
+   <ul>
+       {% if message.username == None %}
+       Anonymous<br>
+       {% else %}
+       {{ message.username }}<br>
+       {% endif %}
+
+       {{ message.title }}<br>
+       {{ message.text }}<br>
+       <a href="/messages/{{message.title}}">Read more and vote</a>
+   </ul>
+{% endfor %}
+</div>
+
+{% endblock %}

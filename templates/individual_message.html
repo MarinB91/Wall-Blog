@@ -1,0 +1,22 @@
+{% extends "index.html" %}
+
+{% block content %}
+
+<h2>Title</h2>
+    {{ single_message.title }}
+<h2>Text</h2>
+    <p>{{ single_message.text }}</p>
+<h2>Authored by</h2>
+<p>{{ single_message.username }} on {{ single_message.time }}</p>
+
+<h2>Vote</h2>
+<a href="/upvote/{{single_message.title}}">Upvote</a>
+<a href="/downvote/{{single_message.title}}">Downvote</a>
+
+{% if user  == single_message.username %}
+    <h2>Delete</h2>
+    <a href="/delete/{{single_message.title}}">Delete</a>
+{% endif %}
+
+
+{% endblock %}
